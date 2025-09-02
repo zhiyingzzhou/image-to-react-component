@@ -1,0 +1,56 @@
+{
+  "name": "image-to-react-component",
+  "version": "0.0.1",
+  "description": "Automatically convert an image or svg into a react component",
+  "keywords": [
+    "image",
+    "react",
+    "component"
+  ],
+  "homepage": "https://github.com/zhiyingzzhou/image-to-react-component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhiyingzzhou/image-to-react-component"
+  },
+  "license": "MIT",
+  "author": "zhiyingzhou",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es5.js",
+  "typings": "dist/types",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rimraf dist",
+    "copy-files": "copyfiles -u 1 src/template/*.ejs dist/",
+    "build": "tsc && rollup -c --bundleConfigAsCjs && rimraf compiled && npm run copy-files && typedoc --entryPoints src/index.ts --entryPointStrategy expand --out dist/docs --plugin typedoc-theme-hierarchy --theme hierarchy",
+    "start": "tsc -w & rollup -c --bundleConfigAsCjs -w",
+    "demo": "node ./demo/index.cjs"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/ejs": "^3.1.5",
+    "@types/jsdom": "^21.1.6",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.12",
+    "rollup": "^4.12.0",
+    "ts-node": "^10.9.2",
+    "typedoc": "^0.25.9",
+    "typedoc-theme-hierarchy": "^4.1.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "copyfiles": "^2.4.1",
+    "ejs": "^3.1.10",
+    "image-size": "^1.1.1",
+    "jsdom": "^24.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.2.5",
+    "rimraf": "^6.0.1"
+  }
+}
