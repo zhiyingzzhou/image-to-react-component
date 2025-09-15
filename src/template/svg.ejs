@@ -7,21 +7,12 @@ import React from 'react';
 // 导入SVG图标
 import <%= componentName %>Svg from '<%= relativeFilePath %>';
 
-// 图标映射表
-const iconMap = {
-  '<%= iconName %>': <%= componentName %>Svg,
-} as const;
-
-// SVG图标名称类型
-export type SvgIconName = keyof typeof iconMap;
-
 export interface <%= componentName %>SvgProps {
-  /** 图标名称 */
-  name: SvgIconName;
   /** 自定义类名 */
   className?: string;
   /** 图标大小 */
   size?: number | string;
+  fontSize?: number | string;
   /** 图标颜色 */
   color?: string;
   /** 点击事件 */
@@ -30,16 +21,14 @@ export interface <%= componentName %>SvgProps {
   style?: React.CSSProperties;
 }
 
-const <%= componentName %>SvgIcon: React.FC<<%= componentName %>SvgProps> = ({
-  name,
+export const <%= componentName %>SvgIcon: React.FC<<%= componentName %>SvgProps> = ({
   className,
   size,
+  fontSize,
   color,
   onClick,
   style,
 }) => {
-  const SvgComponent = iconMap[name];
-
   // 合并样式
   const combinedStyle: React.CSSProperties = {
     ...style,
@@ -49,13 +38,17 @@ const <%= componentName %>SvgIcon: React.FC<<%= componentName %>SvgProps> = ({
     combinedStyle.fontSize = typeof size === 'number' ? `${size}px` : size;
   }
 
+  if(fontSize) {
+    combinedStyle.fontSize = typeof fontSize === 'number' ? `${fontSize}px` : fontSize;
+  }
+
   if (color) {
     combinedStyle.color = color;
   }
 
   return (
     <Icon
-      component={SvgComponent}
+      component={<%= componentName %>Svg}
       className={className}
       style={combinedStyle}
       onClick={onClick}
