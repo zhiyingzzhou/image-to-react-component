@@ -41,10 +41,8 @@ export const <%= componentName %>SvgIcon: React.FC<<%= componentName %>SvgProps>
   if(fontSize) {
     combinedStyle.fontSize = typeof fontSize === 'number' ? `${fontSize}px` : fontSize;
   }
-
-  if (color) {
-    combinedStyle.color = color;
-  }
+  
+  combinedStyle.color = color || 'transparent';
 
   return (
     <Icon

@@ -1,6 +1,6 @@
 {
   "name": "image-to-react-component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Automatically convert an image or svg into a react component",
   "keywords": [
     "image",
